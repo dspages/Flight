@@ -13,18 +13,18 @@ public class PlayerPlaneController : PlaneController
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            Roll(-1f);
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            Roll(+1f);
-        }
-        else
-        {
-            Roll(0f);
-        }
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    Roll(-1f);
+        //}
+        //else if (Input.GetKey(KeyCode.E))
+        //{
+        //    Roll(+1f);
+        //}
+        //else
+        //{
+        //    Roll(0f);
+        //}
         if (Input.GetKey(KeyCode.A))
         {
             Yaw(-1f);

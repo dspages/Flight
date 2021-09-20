@@ -25,7 +25,7 @@ public class PlaneController : MonoBehaviour
 
     protected void Yaw(float rate)
     {
-        turnControls.Set(turnControls.x, turnControls.y, 360f * rate * rollPower * Time.deltaTime);
+        turnControls.Set(turnControls.x, 360f * rate * yawPower * Time.deltaTime, turnControls.z);
     }
 
     protected void Pitch(float rate)
@@ -33,10 +33,10 @@ public class PlaneController : MonoBehaviour
         turnControls.Set(360f * rate * pitchPower * Time.deltaTime, turnControls.y, turnControls.z);
     }
 
-    protected void Roll (float rate)
-    {
-        turnControls.Set(turnControls.x, 360f * rate * yawPower * Time.deltaTime, turnControls.z);
-    }
+    //protected void Roll (float rate)
+    //{
+    //    turnControls.Set(turnControls.x, turnControls.y , 360f * rate * rollPower * Time.deltaTime);
+    //}
 
     protected void Accellerate (float rate)
     {

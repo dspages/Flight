@@ -8,9 +8,11 @@ public class PlaneController : MonoBehaviour
     [SerializeField] float rollPower = 200f;
     [SerializeField] float pitchPower = 200f;
     [SerializeField] float yawPower = 200f;
-    [SerializeField] float enginePower = 5f;
-    [SerializeField] float maxEnginePower = 10f;
+    [SerializeField] float minEnginePower = 5f;
+    [SerializeField] float enginePower = 10f;
+    [SerializeField] float maxEnginePower = 20f;
     private Vector3 turnControls = Vector3.zero;
+    private float speedChangeRate = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -40,8 +42,22 @@ public class PlaneController : MonoBehaviour
 
     protected void Accellerate (float rate)
     {
-        enginePower += 5f * rate * Time.deltaTime;
+        if (rate == 0f)
+        {
+            if (enginePower > 10f + speedChangeRate * Time.deltaTime)
+            {
+                enginePower -= speedChangeRate * Time.deltaTime;
+            }
+            else if (enginePower < 10f - speedChangeRate * Time.deltaTime)
+            {
+                enginePower += speedChangeRate * Time.deltaTime;
+            }
+        }
+        else
+        {
+            enginePower += speedChangeRate * rate * Time.deltaTime;
+        }
         if (enginePower > maxEnginePower) enginePower = maxEnginePower;
-        if (enginePower < 0) enginePower = 0f;
+        if (enginePower < minEnginePower) enginePower = minEnginePower;
     }
 }

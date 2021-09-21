@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlanePhysics : MonoBehaviour
 {
-    [SerializeField] float speed = 10f;
-    [SerializeField] float drag = 0.5f;
+    // [SerializeField] float drag = 0.5f;
     // [SerializeField] float lift = 0.03f;
 
     private float roll = 0f;
@@ -30,9 +29,9 @@ public class PlanePhysics : MonoBehaviour
 
     void SetRoll(Vector3 movement)
     {
-        if (movement.y < 0f && roll < 10f)
+        if (movement.y < 0f && roll < 40f)
             roll += +60f * Time.deltaTime;
-        else if (movement.y > 0f && roll > -10f)
+        else if (movement.y > 0f && roll > -40f)
             roll += -60f * Time.deltaTime;
         else if (roll > 60f * Time.deltaTime)
             roll += -60f * Time.deltaTime;
@@ -58,7 +57,7 @@ public class PlanePhysics : MonoBehaviour
         return 0f;
     }
 
-    public void ApplyPerFrameControls(Vector3 movement, float engineAccelleration)
+    public void ApplyPerFrameControls(Vector3 movement, float enginePower)
     {
         Vector3 eulers = transform.eulerAngles;
         SetRoll(movement);
@@ -66,11 +65,8 @@ public class PlanePhysics : MonoBehaviour
         eulers.y += movement.y * Time.deltaTime;
         if (eulers.x < 30f || eulers.x > 330f)
             eulers.x += movement.x * Time.deltaTime;
-        Debug.Log(eulers.x);
         eulers.x += FlattenPitch(movement, eulers);
         transform.eulerAngles = eulers;
-        speed += engineAccelleration * Time.deltaTime;
-        speed -= speed * drag * Time.deltaTime;
-        transform.position += GetForwardVector() * speed * Time.deltaTime;
+        transform.position += GetForwardVector() * enginePower * Time.deltaTime;
     }
 }

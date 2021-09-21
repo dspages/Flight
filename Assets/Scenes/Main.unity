@@ -275,9 +275,9 @@ MonoBehaviour:
   rollPower: 200
   pitchPower: 100
   yawPower: 100
-  minEnginePower: 5
-  enginePower: 10
-  maxEnginePower: 20
+  minEnginePower: 10
+  enginePower: 20
+  maxEnginePower: 40
 --- !u!1 &1795620395
 GameObject:
   m_ObjectHideFlags: 0
